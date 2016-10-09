@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Counter</title>
+	<style>
+		*{
+			text-align: center
+		}
+	</style>
+</head>
+<body>
+	<h1>COUNTER</h1>
+	<p>{{ counter }} times.</p>
+	<form method ='post' action='/process_or_some_page'>
+		<input type='submit' value='Plus 2'>
+	</form>
+	<form method ='post' action='/clear'>
+		<input type='submit' value='Clear'>
+	</form>
+</body>
+</html>

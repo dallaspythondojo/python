@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  
+  $(document).ready(function(){
+    function Parensvalid(str){
+      var open = 0;
+      var close = 0;
+      for(var i = 0;i<str.length;i++){
+        switch (str[i]){
+          case '(' : open += 1; break;
+          case ')' : close += 1; break;
+        }
+        if (close > open)
+          return false;
+      }
+      if (open == close){
+        return ture;
+      }
+      else
+        return false;
+    }
+  });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
