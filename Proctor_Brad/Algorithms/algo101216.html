@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>Length Max Min Avg</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  SLL.prototype.length = Funciton(){
+      var runner = this.head;
+      var couter = 0;
+      if (!this.head){
+          return null;
+      }
+      while(runner){
+          counter++;
+          runner = runner.next
+      }
+      return counter;
+  }
+
+  SLL.prototype.max = Function(){
+      if (!this.head){
+          return null;
+      }
+      var runner = this.head;
+      var max = runner.val;
+      while(runner){
+          if(runer.val > max){
+              max = runner.val;
+          }
+          runner = runner.next;
+      }
+      return max;
+  }
+
+  SLL.prototype.min = Function(){
+      if (!this.head){
+          return null;
+      }
+      var runner = this.head;
+      var min = runner.val;
+      while(runner){
+          if(runer.val < min){
+              min = runner.val;
+          }
+          runner = runner.next;
+      }
+      return min;
+  }
+
+  SLL.prototype.max = Function(){
+      if (!this.head){
+          return null;
+      }
+      var runner = this.head;
+      var sum = 0;
+      var counter = 0;
+      var max = runner.val;
+      while(runner){
+          sum = sum + runner.val;
+          counter++;
+          runner = runner.next;
+      }
+      return sum / counter;
+  }
