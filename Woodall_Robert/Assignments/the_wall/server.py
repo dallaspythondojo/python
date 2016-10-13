@@ -73,21 +73,22 @@ def login():
 		'email': request.form['login_email']
 	}
 	
-	user_data = mysql.query_db(query, data)
+	try:
+		user_data = mysql.query_db(query, data)
+	except Exception as error:
+		print('validLogin(): {}'.format(error))
 	
 	if len(user_data) < 1:
-		flash('Invalid username, try again or register!', 'login_error')
+		flash('Uh oh, not a good email/password combo...try again or register!', 'login_error')
 		return redirect('/')
-		
-	print('user in database')
 	
-	# verify login credentials and login user
+	# verify login credentials and 'log user in'
 	if not bcrypt.check_password_hash(user_data[0]['password'], request.form['login_pw']):
 		flash('Invalid login credentials, try again!', 'login_error')
 		return redirect('/')
-		
-	if not 'logged_in_userid' in session:
-		session['logged_in_userid'] = user_data[0]['id']
+	
+	# store all data for that user
+	session['logged_in_user_data'] = user_data[0]
 		
 	return redirect('/user_wall')
 
@@ -96,7 +97,6 @@ def register():
 	if not validRegistration():
 		return redirect('/')
 	
-	# store user info in db and login user
 	query = 'insert into user (first_name, last_name, email, password, created_at, updated_at) values (:first_name, :last_name, :email, :hashed_pw, NOW(), NOW())'
 	data = {
 		'first_name': request.form['fname'],
@@ -105,98 +105,104 @@ def register():
 		'hashed_pw': bcrypt.generate_password_hash(request.form['pw'])
 	}
 	
-	user_id = mysql.query_db(query, data)
+	try:
+		user_id = mysql.query_db(query, data)
+	except Exception as error:
+		print('register(): {}'.format(error))
+		flash('An error occured during registration...try again!', 'registration_error')
+		return redirect('/')
 	
-	# successful registration
-	if not 'logged_in_userid' in session:
-		session['logged_in_userid'] = user_id
+	# registered successfully, retrieve all data for user and 'log user in'
+	query = 'select * from user where id=:id'
 	
-	# redirect then display logged in user's name on index.html
+	try:
+		user_data = mysql.query_db(query, {'id': user_id})
+	except Exception as error:
+		print('register(): {}'.format(error))
+		flash('Registration successful, but an error occured during login...login again!', 'registration_error')
+		return redirect('/')
+	
+	session['logged_in_user_data'] = user_data[0]
+	
 	return redirect('/user_wall')
 
 @app.route('/user_wall')
 def user_wall():
-	# retrieve user name for session['logged_in_userid'] and other necessary info for user
-	query = 'select first_name, last_name from user where id=:id'
-	data = {
-		'id': session['logged_in_userid']
-	}
-	
-	user_data = mysql.query_db(query, data)
-	
-	if len(user_data) < 1:
-		flash('Internal Error...contact support!', 'login_error')
+	# verify user is logged in
+	if not 'logged_in_user_data' in session:
+		flash('Your previous session has ended...login!')
 		return redirect('/')
-		# something critical went wrong, non-registered user still got in!!!
-		
-	# query for all messages, handle if no messages in db
-	query = ("select message.id as message_id, user.first_name as fname, user.last_name as lname, date_format(message.created_at, '%M %D, %Y') as date, message.message as content "
-			 "from user "
-			 "join message on user.id = message.user_id;")
 	
-	messages = mysql.query_db(query)
+	# query for all messages and handle if no messages in db
+	query = ("select message.id as message_id, user.first_name as fname, user.last_name as lname, date_format(message.created_at, '%M %D, %Y - %h:%i %p') as date, message.message as content "
+			 "from user "
+			 "join message on user.id = message.user_id "
+			 "order by date desc;")
+	
+	try:
+		messages = mysql.query_db(query)
+	except Exception as error:
+		print('user_wall(): {}'.format(error))
+		flash('Error retrieving posts...sorry!', 'error')
 	
 	if len(messages) == 0:
 		messages.append('No posts to display...so post something!')
 	
-	# TODO: query for all comments
-	query = ("select user.first_name fname, user.last_name lname, message.id as message_id, date_format(comment.created_at, '%M %D, %Y') as date, comment.comment as content "
+	# query for all comments and handle if no comments in db for a message
+	query = ("select user.first_name fname, user.last_name lname, message.id as message_id, date_format(comment.created_at, '%M %D, %Y - %h:%i %p') as date, comment.comment as content "
 			 "from message "
 			 "join comment on comment.message_id = message.id "
 			 "join user on comment.user_id = user.id;")
 	
-	comments = mysql.query_db(query)
+	try:
+		comments = mysql.query_db(query)
+	except Exception as error:
+		print('user_wall(): {}'.format(error))
+		flash('Error retrieving comments...sorry!', 'error')
+		
+#	if len(comments) == 0:
+#		comments = None
 	
-	if len(comments) == 0:
-		comments = None
-	print(comments)
-	
-	return render_template('user_wall.html', user=user_data[0], messages=messages, comments=comments)
+	return render_template('user_wall.html', user=session['logged_in_user_data'], messages=messages, comments=comments)
 	
 @app.route('/user_wall/message_post', methods=['POST'])
 def post_message():
 	if not validMessagePost():
 		return redirect('user_wall')
 	
-	# input post message into message table in db
 	query = 'insert into message (user_id, message, created_at, updated_at) values (:user_id, :message_text, NOW(), NOW())'
 	data = {
-		'user_id': session['logged_in_userid'],
+		'user_id': session['logged_in_user_data']['id'],
 		'message_text': request.form['message_text']
 	}
 	
 	try:
 		mysql.query_db(query, data)
 	except Exception as error:
-		print('post_message: {}'.format(error))
-		flash('Error trying to post message...try again!', 'error')
+		print('post_message(): {}'.format(error))
+		flash('Error posting message...try again!', 'error')
 		return redirect('/user_wall')
 	
 	return redirect('/user_wall')
 
 @app.route('/user_wall/comment/<message_id>', methods=['POST'])
 def comment(message_id):
-	print('comment: mid = {}'.format(message_id));
-	
-	#TODO: validate comment input data
 	if not validComment():
 		return redirect('user_wall')
 	
-	#insert into db
 	query = ("insert into comment (message_id, user_id, comment, created_at, updated_at) "
 			 "values (:message_id, :user_id, :comment, NOW(), NOW());")
-	
 	data = {
 		'message_id': message_id,
-		'user_id': session['logged_in_userid'],
+		'user_id': session['logged_in_user_data']['id'],
 		'comment': request.form['comment_text']
 	}
 	
 	try:
 		mysql.query_db(query, data)
 	except Exception as error:
-		print('comment: {}'.format(error))
-		flash('Error trying to post comment...try again!', 'error')
+		print('comment(): {}'.format(error))
+		flash('Error posting comment...try again!', 'error')
 		return redirect('/user_wall')
 		
 	return redirect('/user_wall')

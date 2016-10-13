@@ -63,7 +63,7 @@
 			border: 1px solid black;
 		}
 		
-		.user_post h4{
+		.user_post h5{
 			margin-bottom: 10px;
 		}
 		
@@ -127,18 +127,20 @@
 			{% for message in messages %}
 				{% if 'fname' in message %}
 					<div class="user_post">
-						<h4>{{ message['fname'] }} {{ message['lname'] }} - {{ message['date'] }}</h4>
+						<h4>{{ message['fname'] }} {{ message['lname'] }}</h4>
+						<h5>{{ message['date'] }}</h5>
 						<p class="first_p_of_post">{{ message['content'] }}</p>
-						{% if comments != None %}
+						
 							{% for comment in comments %}
 								{% if message['message_id'] == comment['message_id'] %}
 									<div class="comment">
-										<h4>{{ comment['fname'] }} {{ comment['lname'] }} - {{ comment['date'] }}</h4>
+										<h4>{{ comment['fname'] }} {{ comment['lname'] }}</h4>
+										<h5>{{ comment['date'] }}</h5> 
 										<p>{{ comment['content'] }}</p>
 									</div>
 								{% endif %}
 							{% endfor %}
-						{% endif %}
+						
 						<div class="comment_input_container">
 							<h4>Comment on Post</h4>	
 							<form action="/user_wall/comment/{{ message['message_id'] }}" method="post">
