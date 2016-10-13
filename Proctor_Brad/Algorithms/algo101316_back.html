@@ -1,0 +1,10 @@
+SLL.prototype.back=function(){
+    if(!this.head){
+        return null;
+    }
+    var i = this.head;
+    while(i.next){
+        i = i.next;
+    }
+    return i.val;
+}

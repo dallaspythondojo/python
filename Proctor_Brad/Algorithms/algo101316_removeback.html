@@ -1,0 +1,11 @@
+SLL.prototype.removeBack=function(){
+    if(!this.head){
+        return null;
+    }
+    var i = this.head;
+    while(i.next.next){
+        i = i.next;
+    }
+    i.next = null;
+    return this;
+}
