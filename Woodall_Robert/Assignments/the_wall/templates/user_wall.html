@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ user['first_name'] }} {{ user['last_name'] }}'s Wall</title>
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		#wrapper{
+			width: 970px;
+			padding: 10px;
+			margin: 0px auto;
+		}
+		
+		header{
+			padding: 10px 15px;
+		}
+		
+		header h4{
+			display: inline;
+			width: 20%;
+		}
+		
+		#header_actions{
+			display: inline-block;
+			width: 83%;
+			text-align: right;
+		}
+		
+		#header_actions h4, #header_actions form{
+			display: inline;
+		}
+		
+		main{
+			padding: 25px 40px 25px 40px;
+		}
+		
+		main h4{
+			margin-bottom: 5px;
+		}
+		
+		main form{
+			text-align: right;
+		}
+		
+		main form textarea{
+			display: block;
+			width: 100%;
+			height: 100px;
+			resize: none;
+		}
+		
+		main form input{
+			margin: 10px 0px;
+		}
+		
+		.user_post{
+			padding: 10px 5px;
+			margin-bottom: 30px;
+			border: 1px solid black;
+		}
+		
+		.user_post h5{
+			margin-bottom: 10px;
+		}
+		
+		/* coudln't get following to work, therefore sucky class below exists */
+		.user_post p:first-child{
+			margin-bottom: 30px;
+		}
+		
+		p.first_p_of_post{
+			margin-bottom: 25px;
+		}
+		
+		.comment, .comment_input_container{
+			width: 85%;
+			padding: 10px 5px;
+			margin: 0px 0px 15px 110px; /* HORRIBLE, but I'm short on time :-) */
+			border: 1px solid black;
+		}
+		
+		.error{
+			display: block;
+			width: 375px;
+			padding: 5px;
+			margin-bottom: 10px;
+			color: white;
+			background: red;
+			font-weight: bold;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<h4>{{ user['first_name'] }} {{ user['last_name'] }}'s Wall</h4>
+			<div id="header_actions">
+				<h4>Welcome {{ user['first_name'] }}</h4>
+				<form action="/logout">
+					<input type="submit" value="Logout">
+				</form>
+			</div>
+		</header>
+		<hr>
+
+		<main>
+			<!-- Handle flask flash messages for post/comments only -->
+			{% with messages = get_flashed_messages(with_categories=true, category_filter=["error"]) %}
+			  {% if messages %}
+				{% for category, message in messages %}
+				  <p class="{{ category }}">{{ message }}</p>
+				{% endfor %}
+			  {% endif %}
+			{% endwith %}	
+			
+			<h4>Post a Message</h4>	
+			<form action="/user_wall/message_post" method="post">
+				<textarea name="message_text" placeholder="type message text here..."></textarea>
+				<input type="submit" value="post message">
+			</form>
+			
+			{% for message in messages %}
+				{% if 'fname' in message %}
+					<div class="user_post">
+						<h4>{{ message['fname'] }} {{ message['lname'] }}</h4>
+						<h5>{{ message['date'] }}</h5>
+						<p class="first_p_of_post">{{ message['content'] }}</p>
+						
+							{% for comment in comments %}
+								{% if message['message_id'] == comment['message_id'] %}
+									<div class="comment">
+										<h4>{{ comment['fname'] }} {{ comment['lname'] }}</h4>
+										<h5>{{ comment['date'] }}</h5> 
+										<p>{{ comment['content'] }}</p>
+									</div>
+								{% endif %}
+							{% endfor %}
+						
+						<div class="comment_input_container">
+							<h4>Comment on Post</h4>	
+							<form action="/user_wall/comment/{{ message['message_id'] }}" method="post">
+								<textarea name="comment_text" placeholder="type comment text here..."></textarea>
+								<input type="submit" value="post comment">
+							</form>
+						</div>
+					</div>
+				{% else %}
+					<!-- Handle case where no messages have been posted. -->
+					<p>{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+			
+		</main>
+	</div>
+</body>
+</html>
