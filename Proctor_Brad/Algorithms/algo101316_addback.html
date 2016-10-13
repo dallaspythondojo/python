@@ -1,0 +1,11 @@
+SLL.prototype.addBack=function(x){
+    if(!this.head){
+        return null;
+    }
+    var i = this.head;
+    while(i.next){
+        i = i.next;
+    }
+    i.next = new Node(x);
+    return this;
+}
