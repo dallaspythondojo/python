@@ -1,0 +1,48 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: lightgreen;
+  padding: 40px;
+}
+.wrapper{
+  margin: 0 auto;
+  width: 600px;
+}
+h1{
+  margin-bottom: 10px;
+}
+table{
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+.add input{
+  display: block;
+  margin: 5px 0 15px 0;
+  border: 2px solid black;
+}
+.update_form{
+  display: block;
+  margin: 5px 0 15px 0;
+  border: 2px solid black;
+  width: 150px;
+
+}
+.button{
+  width: 70px;
+  height: 25px;
+  background-color: lightblue;
+  color: white;
+  box-shadow: 2px 2px 1px 0 black;
+  border: 2px solid black;
+}
+.edit{
+    width: 70px;
+    height: 25px;
+    background-color: lightblue;
+    color: white;
+    box-shadow: 2px 2px 1px 0 black;
+    border: 2px solid black;
+    margin-bottom: 15px;
+}

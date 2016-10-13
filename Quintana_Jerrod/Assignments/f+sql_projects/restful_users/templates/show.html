@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static', filename= 'users.css')}}" media="screen" title="no title">
+    <title>Show</title>
+  </head>
+  <body>
+    {% if session['which'] == 'show' %}
+      <h1>User {{id}}</h1>
+      {% for i in all %}
+        <p>Full Name: {{ i['first_name'] }} {{ i['last_name']}}</p>
+        <p>Email: {{ i['email'] }}</p>
+        <p>Created at: {{ i['date'] }}</p>
+      {% endfor %}
+      <p><a href="/users/{{id}}/edit">Edit</a> | <a href="/users/{{id}}/delete">Delete</a></p>
+
+    {% elif session['which'] == 'add' %}
+      <h1>Add a new user</h1>
+      <form class="add" action="/users/create" method="post">
+        First Name: <input type="text" name="first" value="">
+        Last Name:<input type="text" name="last" value="">
+        Email:<input type="text" name="email" value="">
+        <input class="button" type="submit" name="name" value="Create">
+      </form>
+      <a href="/users">Go Back</a>
+
+    {% elif session['which'] == 'edit' %}
+      <h1>Edit User {{id}}</h1>
+        <form class="" action="/users/{{id}}" method="post">
+          First Name: <input class='update_form' type="text" name="edit_first" value="{{ keep[0]['first_name'] }}">
+          Last Name: <input class='update_form' type="text" name="edit_last" value="{{ keep[0]['last_name'] }}">
+          Email: <input class='update_form' type="text" name="edit_email" value="{{ keep[0]['email'] }}">
+          <input class="edit" type="submit" name="name" value="Update">
+        </form>
+        <p><a href="/users/{{ id}}">Show</a> | <a href="/users">Go Back</a></p>
+    {% endif %}
+  </body>
+</html>
