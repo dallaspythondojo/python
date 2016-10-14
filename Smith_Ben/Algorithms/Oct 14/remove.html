@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  /*
+  $(docuemnt).ready(function(){
+    // ... your assignment here
+  });
+  */
+  
+$ SLL.prototype.remove = (function(val){
+  var runner = this.head;
+  if (runner == null){
+    return this.head;
+  }
+  while (runner.next.val != val){
+    if(! runner.next){
+      return this.head;
+    }
+    else{
+      runner = runner.next;
+    }
+  }
+  var temp = runner.next.next;
+  runner.next.next = null;
+  runner.next = temp;
+}
+
+  });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
