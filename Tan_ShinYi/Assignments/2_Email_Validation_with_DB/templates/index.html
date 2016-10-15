@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>Email Validation</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+  .error{
+    color:white;
+    display:inline-block;
+    padding:5px 10px;
+    margin: 5px;
+    background-color: red;
+
+  }
+  </style>
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form action='/add_email' method='POST'>
+    Email Address: <input type="text" name="email" value="{{session['email']}}">
+    <input type="submit" value="Add Email!">
+  </form>
+</body>
+</html>
