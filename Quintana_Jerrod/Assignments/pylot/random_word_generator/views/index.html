@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    Random Word (attempt # {{ count }})
+    <div class="">
+      {{ random }}
+    </div>
+    <form class="" action="/process" method="post">
+      <input type="submit" name="name" value="Generate">
+    </form>
+  </body>
+</html>
