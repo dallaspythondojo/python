@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>Welcome Page</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+  .error, .confirmation{
+    color:white;
+    display:inline-block;
+    padding:5px 10px;
+    margin: 5px;
+  }
+
+  .error{
+    background-color: red;
+  }
+
+  .confirmation{
+    background-color: green;
+  }
+
+  form ul li{
+    list-style-type: none;
+  }
+
+  .reg_login{
+    display:inline-block;
+    width: 500px;
+    background-color: grey;
+    vertical-align: top;
+  }
+  </style>
+
+</head>
+<body>
+  <!-- demonstrates to user that they have been remembered and are indeed logged in-->
+  <h1>Welcome {{ user[0]['first_name']}} {{ user[0]['last_name']}}!</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+
+</body>
+</html>
