@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+  .error{
+    color:white;
+    display:inline-block;
+    padding:5px 10px;
+    margin: 5px;
+    background-color: red;
+  }
+
+  form ul li{
+    list-style-type: none;
+  }
+
+  .reg_login{
+    display:inline-block;
+    width: 500px;
+    background-color: grey;
+    vertical-align: top;
+  }
+  </style>
+</head>
+<body>
+  <h1>Welcome to The Wall!</h1>
+
+  <div class="reg_login">
+    <h2>Registration</h2>
+    {% if session['reg_vs_login'] == "Reg"%}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+    <form action='/register' method='POST'>
+      <ul>
+        <li>First Name:<input type="text" name="first_name" value="{{session['first_name']}}"></li>
+        <li>Last Name:<input type="text" name="last_name" value="{{session['last_name']}}"></li>
+        <li>Email:<input type="text" name="email" value="{{session['email']}}"></li>
+        <li>Password:<input type="password" name="password"></li>
+        <li>Confirm Password:<input type="password" name="con_password"></li>
+      </ul>
+      <input type="submit" value="Register!">
+    </form>
+  </div>
+
+  <div class="reg_login">
+    <h3>Log In</h3>
+    {% if session['reg_vs_login'] == "Login"%}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+    <form action='/login' method='POST'>
+      <ul>
+        <li>Email:<input type="text" name="email1" value="{{session['email1']}}"></li>
+        <li>Password:<input type="password" name="password1"></li>
+      </ul>
+      <input type="submit" value="Log In!">
+    </form>
+  </div>
+</body>
+</html>

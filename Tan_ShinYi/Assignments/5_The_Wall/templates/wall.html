@@ -1,0 +1,146 @@
+<html>
+<head>
+  <title>Wall Assignment</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+
+  #header{
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 100%;
+    padding: 0px 30px;
+    border-bottom: 2px solid grey;
+    background-color: #ccc;
+  }
+
+  #logoff{
+    position: fixed;
+    top:25px;
+    right:0px;
+    width: 350px;
+    height: 30px;
+    text-align: right;
+    padding: 0px 20px;
+  }
+
+  #logoff a{
+    margin-left: 60px;
+  }
+
+  .reg_login{
+    display:inline-block;
+    width: 500px;
+    background-color: grey;
+    vertical-align: top;
+  }
+
+  #post_message{
+    width: 700px;
+    margin: 0px auto;
+    display: block;
+    margin-top: 100px;
+  }
+
+    #post_message textarea{
+      width: 700px;
+      height: 70px;
+    }
+
+    #post_message .button{
+      margin-top: 7px;
+      text-align: right;
+      display: block;
+    }
+
+    #post_message .button input{
+      background-color:lightblue;
+    }
+
+    .messages{
+      width: 700px;
+      margin: 20px auto;
+      display: block;
+    }
+
+      .messages h4{
+        margin-left: -10px;
+      }
+
+    .post_comment{
+      width: 600px;
+      margin: 0px auto;
+      display: block;
+      margin-top: 30px;
+    }
+
+      textarea[name="comment"]{
+        margin-top: -20px;
+        width: 600px;
+        height: 60px;
+      }
+
+      .post_comment .button{
+        text-align: right;
+        display: block;
+      }
+
+      .post_comment .button input{
+        background-color: green;
+        color: white;
+      }
+
+      .comments{
+        width: 600px;
+        margin: 0px auto;
+        display: block;
+        margin-top: 30px;
+      }
+  </style>
+
+</head>
+<body>
+  <div id="header"><h2>CodingDojo Wall</h2>
+    <div id="logoff">Welcome {{ user[0]['first_name']}} {{ user[0]['last_name']}} <a href="/logout">Log Off</a>
+  </div>
+  </div>
+
+  <div id="post_message">
+    <form action="/message" method="post">
+      <h3>Post a message<h3>
+      <textarea name="message" placeholder="Write a message!"></textarea>
+      <div class="button"><input type="submit" value="Post a message"></div>
+    </form>
+  </div>
+
+  {% for m in messages %}
+  <div class="messages">
+    <h4>{{m['first_name']}} {{m['last_name']}} - {{m['date_created']}}</h4>
+    <p>{{m['message']}}</p>
+    {% for c in comments %}
+      {% if c['message_id'] == m['id'] %}
+        <div class="comments">
+          <h5>{{c['first_name']}} {{c['last_name']}} - {{c['date_created']}}</h5>
+          <p>{{c['comment']}}</p>
+          {% if c['user_id']==session['id']: %}
+              <a href="/delete/{{c['id']}}">Delete Post</a>
+        </div>
+      {% endif %}
+      {% endif %}
+    {% endfor %}
+    <div class="post_comment">
+      <form action="/comment" method="post">
+        <h5>Post a comment<h5>
+        <textarea name="comment" placeholder="Write a comment!"></textarea>
+        <input type="hidden" name="message_id" value="{{m['id']}}">
+        <div class="button"><input type="submit" value="Post a comment"></div>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+
+
+</body>
+</html>
