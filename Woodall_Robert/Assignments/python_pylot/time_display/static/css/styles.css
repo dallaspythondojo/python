@@ -1,0 +1,8 @@
+* {
+  font-family: monaco;
+}
+
+h1, h3{
+	padding: 10px 0px;
+	border: 1px solid black;
+}
