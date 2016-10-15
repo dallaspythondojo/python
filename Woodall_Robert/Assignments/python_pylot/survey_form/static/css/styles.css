@@ -1,0 +1,13 @@
+#wrapper{
+	margin-top: 15px;
+	padding-top: 10px; 
+	border: 1px solid black;
+}
+
+textarea{
+	resize: none;
+}
+
+#submit_row{
+	colspan: 2;
+}
