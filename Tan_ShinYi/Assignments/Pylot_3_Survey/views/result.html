@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    {% with messages=get_flashed_messages()%}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="conf">{{message}}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div id="info">
+      <h3>Submitted Information</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td>{{session['name']}}</td>
+          </tr>
+          <tr>
+            <td>Dojo Location:</td>
+            <td>{{session['location']}}</td>
+          </tr>
+          <tr>
+            <td>Favorite Language:</td>
+            <td>{{session['language']}}!!!</td>
+          </tr>
+          <tr>
+            <td>Comment:</td>
+            <td>{{session['comment']}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <form action='/reset'>
+        <div class="right-align"><button type="submit">Go Back</button></div>
+      </form>
+    </div>
+  </body>
+</html>
