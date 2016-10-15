@@ -1,0 +1,40 @@
+
+#wrapper {
+    width: 970px;
+    margin: auto;
+    background-color: silver;
+	padding: 20px;
+}
+
+#register {
+	font-family: Verdana, geneva, sans-serif
+}
+
+#login {
+	padding: 10px;
+	font-family: Verdana, geneva, sans-serif
+}
+
+h1 {
+	color: grey;
+}
+
+h3 {
+	color: white;
+}
+
+span {
+	color: #009fbd;
+}
+
+form {
+	color: white;
+	font-size: 12px;
+	padding: 10px;
+	margin: 10px;
+}
+
+input {
+	padding: 5px;
+	margin: 5px;
+}
