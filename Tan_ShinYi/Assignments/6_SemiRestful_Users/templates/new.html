@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Friends</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+  .error{
+    color:white;
+    display:inline-block;
+    padding:5px 10px;
+    margin: 5px;
+    background-color:red;
+  }
+
+  ul li{
+    list-style-type: none;
+    padding: 5px;
+  }
+
+  input[type="text"]{
+    width: 200px;
+  }
+
+  </style>
+</head>
+<body>
+  <h2>Add a new user</h2>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form action='/users/create' method='POST'>
+    <ul>
+      <li>First Name:</li>
+      <li><input type="text" name="first_name" value="{{session['first_name']}}"></label></li>
+      <li>Last Name:</li>
+      <li><input type="text" name="last_name" value="{{session['last_name']}}"></label></li>
+      <li>Email:</li>
+      <li><input type="text" name="email" value="{{session['email']}}"></label></li>
+      <li><input type="submit" value="Create"></li>
+    </ul>
+  </form>
+  <a href="/users">Go Back</a>
+</body>
+</html>

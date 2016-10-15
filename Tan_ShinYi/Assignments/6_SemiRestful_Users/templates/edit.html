@@ -1,0 +1,45 @@
+<html>
+<head>
+  <title>Edit User {{user[0]['id']}}</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+  .error{
+    color:white;
+    display:inline-block;
+    padding:5px 10px;
+    margin: 5px;
+    background-color:red;
+  }
+</style>
+
+</head>
+<body>
+  <h1>Edit User {{user[0]['id']}}</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+
+  <form action='/users/{{user[0]['id']}}' method='post'>
+     <p> First Name: </p>
+     <p> <input type="text" name="first_name" value="{{ user[0]['first_name']}}"> </p>
+     <p> Last Name: </p>
+     <p> <input type="text" name="last_name" value="{{ user[0]['last_name']}}"></p>
+     <p> Email: </p>
+     <p><input type="text" name="email" value="{{ user[0]['email']}}"></p>
+   <input type="Submit" Value="Update">
+   </form>
+   <p><a href="/users/{{user[0]['id']}}">Show</a> | <a href="/users">Go Back</a></p>
+
+</body>
+
+
+</html>
