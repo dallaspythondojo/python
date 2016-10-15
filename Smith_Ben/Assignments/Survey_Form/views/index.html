@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <style>
+    *{
+    	text-align: center;
+    }
+    #container{
+    	border: 5px solid black;
+    	display: inline-block;
+    	padding: 10px;
+    }
+    p{
+    	text-align: right;
+    }
+    h2{
+    	text-align: left;
+    }
+    textarea{
+    	text-align: left;
+    }
+    input{
+    	text-align: left;
+    }
+    </style>
+
+  </head>
+  <body>
+  <form action='/process' method='POST'> 
+  <div id="container">
+  	<h2>Your Name: <input type='text' name='name'></h2>
+  	<h2>Dojo Location: <select name='location'><option value='Dallas'>Dallas</option>
+  						<option value='mv'>Mountain View</option>
+  						<option value='seattle'>Seattle</option>
+  						<option value='la'>L.A.</option>
+						</select>
+	</h2>
+  	<h2>Favorite Language: <select name='language'><option value='python'>Python</option>
+  							<option value='RoR'>Ruby on Rails</option>
+  							<option value='pylot'>Pylot</option>
+  							<option value='mean'>Mean</option>
+  							</select>
+  	</h2>
+  	<h2>Comment (optional):</h2>
+  	<textarea name='comment' rows='12' cols='75'></textarea>
+  	<p><input type='submit' value='Submit'></p>
+  	</form>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
