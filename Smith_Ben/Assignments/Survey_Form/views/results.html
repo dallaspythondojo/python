@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results</title>
+</head>
+
+<body>
+	<h3>Thanks for submitting this form! You have submitted this form {{ session['num'] }} times now.</h3>
+
+	<h2><u>Submitted Information</u></h2>
+	<p>Name: {{ name }}</p>
+	<p>Dojo Location: {{ location }}</p>
+	<p>Favorite Language: {{ language }}</p>
+	<p>Comment: {{ comment }}</p>
+
+	<form action='/'>
+	<input type='submit' value='Go Back'>
+	</form>
+</body>
+</html>
