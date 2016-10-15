@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>Edit-a-Friend!</title>
+  <style>
+  *{
+    font-family: sans-serif;
+  }
+  .error{
+    color:white;
+    display:inline-block;
+    padding:5px 10px;
+    margin: 5px;
+    background-color:red;
+  }
+
+  table{
+    border: 2px solid black;
+  }
+
+  td, th{
+    border: 1px solid grey;
+  }
+
+  </style>
+
+
+</head>
+<body>
+  <h1>Edit {{friend[0]['first_name']}} {{friend[0]['last_name']}}'s Info</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <table>
+    <tbody>
+  <form action='/friends/{{friend[0]['id']}}' method='post'>
+  <tr>
+     <th> First Name </th>
+     <td> <input type="text" name="first_name" value="{{ friend[0]['first_name']}}"> </td>
+   </tr>
+   <tr>
+     <th> Last Name </th>
+     <td> <input type="text" name="last_name" value="{{ friend[0]['last_name']}}"></td>
+   </tr>
+   <tr>
+     <th> Email </th>
+     <td><input type="text" name="email" value="{{ friend[0]['email']}}"></td>
+   </tr>
+ </tbody>
+ </table>
+   <input type="Submit" Value="Submit">
+   </form>
+   <form action="/"><input type="Submit" Value="Return to Home"></form>
+</body>
+
+
+</html>
