@@ -1,0 +1,44 @@
+<html>
+  <head>
+  	<!-- links/scripts for bootstrap -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+	<div id="wrapper" class="container text_center">
+		<form action="/surveys/process" method="post">
+			<div class="form-group">
+				<label>Your Name:</label>
+				<input type="text" class="form-control" name="name">
+			</div>
+			<div class="form-group">
+				<label>Dojo Location:</label>
+				<select class="form-control" name="location">
+					<option value="Mountain View">Mountain View</option>
+					<option value="Dallas">Dallas</option>
+					<option value="San Francisco">San Francisco</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Favorite Language:</label>
+				<select class="form-control" name="fav_lang">
+					<option value="Python">Python</option>
+					<option value="JavaScript">JavaScript</option>
+					<option value="Ruby">Ruby</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Comment (optional):</label>
+				<textarea class="form-control" name="comment"></textarea>
+			</div>
+			<input type="submit" class="btn btn-primary" value="Submit">
+		</form>
+		<form action="/reset">
+			<input type="submit" class="btn btn-danger" value="Reset Count">
+		</form>
+	</div>
+  </body>
+</html>

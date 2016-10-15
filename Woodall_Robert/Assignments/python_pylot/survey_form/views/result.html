@@ -1,0 +1,51 @@
+<html>
+  <head>
+  	<!-- links/scripts for bootstrap -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+	<div id="wrapper" class="container">
+		{% with messages = get_flashed_messages(with_categories=True) %}
+		  {% if messages %}
+			{% for category, message in messages %}
+			  <p class="{{ category }}">{{ message }}</p>
+			{% endfor %}
+		  {% endif %}
+		{% endwith %}
+	
+		<h3>Submitted Information</h3>
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+					<td>Name:</td>
+					<td>{{ data['name'] }}</td>
+				</tr>
+				<tr>
+					<td>Dojo Location:</td>
+					<td>{{ data['location'] }}</td>
+				</tr>
+				<tr>
+					<td>Favorite Language:</td>
+					<td>{{ data['fav_lang'] }}</td>
+				</tr>
+				<tr>
+					<td>Comment:</td>
+					<td>{{ data['comment'] }}</td>
+				</tr>
+				<tr>
+					<!-- TODO: need to span two columns in grid and right align button -->
+					<td id="submit_row">
+						<form action="/">
+							<input type="submit" class="btn btn-primary" value="Go Back">
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+  </body>
+</html>
