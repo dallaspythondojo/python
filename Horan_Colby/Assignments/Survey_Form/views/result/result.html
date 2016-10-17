@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Result</title>
+	<style>
+		#content{
+			width: 500px;
+			height: 600px;
+			border: 1px solid;
+			margin: 30px 60px 30px 200px;
+			padding: 10px 30px;
+		}
+		#flash{
+			width:500px;
+			height: 80px;
+			border: 1px solid;
+			margin: 0px 60px 30px 200px;
+			padding: 10px 30px;
+			background-color: #B6D7A8;
+		}
+		h3{
+			border-bottom: 1px solid;
+			width: 190px;
+		}
+	</style>
+</head>
+<body>
+	<div id="flash">
+		<h2>Thanks for submitting this form! You have submitted this form {{ attempt }} times now!</h2>
+	</div>
+	<div id="content">
+		<h3>Submitted Information</h3>
+		<p>Name: {{ user['name'] }}</p>
+		<p>Dojo Location: {{ user['location'] }}</p>
+		<p>Favorite Language: {{ user['language'] }}</p>
+		<p>Comment: {{ user['comment'] }}</p>
+	</div>
+
+
+</body>
+</html>

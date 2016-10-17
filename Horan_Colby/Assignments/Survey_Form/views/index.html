@@ -1,0 +1,56 @@
+<html>
+<head>
+	<style>
+		*{
+			width: 0 auto;
+		}
+		#content{
+			width: 300px;
+			height: 600px;
+			border: 1px solid;
+			margin: 30px 60px 30px 460px;
+			padding: 10px 30px;
+		}
+		label{
+			text-align: left;
+			display: block;
+			margin-bottom: 10px;
+		}
+		.submit{
+			background-color: blue;
+			color:white;
+			border-radius: 5px;
+			}
+
+	</style>
+
+
+</head>
+<body>
+	<div id="content">
+		<form action='/result' method="post">
+			<label>Your Name: <input type="text" name="name"></label>
+			<label>Dojo Location:
+				<select name="locations">
+					<option value="Mountain View">Mountain View</option>
+					<option value="Dallas">Dallas</option>
+					<option value="Seattle">Seattle</option>
+				</select>
+			</label>
+			<label>Favorite Location:
+				<select name="language">
+					<option value="Python">Python</option>
+					<option value="Ruby">Ruby</option>
+					<option value="piglatin">Pig Latin</option>
+				</select>
+			</label>
+			<label>Comment (optional):<input type="textarea" name="comment"></label>
+			<input class='submit' type="submit" name="result" value="Submit">
+		</form>
+
+
+	</div>
+
+
+</body>
+</html>
