@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <h1>Random String (Attempt# {{session['Att'] }}) </h1>
+  	<h1>{{my_string}}</h1>
+  	<form action="/process" method="POST">
+  		<input type="Hidden" value="{{session['Att']}}" name="Attempt">
+  		<input type="submit" value="Generate String" name="">
+  	</form>
+
+  </body>
+</html>
