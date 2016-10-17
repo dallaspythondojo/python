@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <form action="/process" method="POST">
+    	Your Name:<input type="text" name="name">
+    	Dojo Location:<select name="location">
+    		<option value="San Jose">San Jose</option>
+    		<option value="Seattle">Seattle</option>
+    		<option value="Dallas">Dallas</option>
+    		<option value="New York">New York</option>
+    		</select>
+    	Favorite Language:<select name="favorite">
+    		<option value="Python">Python</option>
+    		<option value="Ruby">Ruby</option>
+    		<option value="HTML">HTML</option>
+    		<option value="CSS">CSS</option>
+    	</select>
+    	<input type="hidden" name="hidden_form">
+    	<input type="submit" name="submit" value="Click Here">
+    </form>
+    <hr>
+    <h2>Here is the user data...</h2> 
+    <h5>Name: {{session['name']}}<br>Location: {{session['location']}}<br>Favorite Language: {{session['favorite_language']}}</h5>
+  </body>
+</html>

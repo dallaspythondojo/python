@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+  <h1>NINJA GOLD V2</h1><hr>
+	Your user gold is: {{session['user_gold']}} and you have played {{session['plays']}} times.
+	<hr>
+	<form action="/process" method="POST">
+		Click here to enter the farm: <input type="submit" name="farm" value="FARM"> <input type="hidden" name="building" value="farm">
+	</form>
+	<form action="/process" method="POST">
+		Click here to enter the cave: <input type="submit" name="cave" value="CAVE"> <input type="hidden" name="building" value="cave">
+	</form>
+		<form action="/process" method="POST">
+		Click here to enter the house: <input type="submit" name="house" value="HOUSE"> <input type="hidden" name="building" value="house">
+	</form>
+		<form action="/process" method="POST">
+		Click here to enter the CASINO!!!: <input type="submit" name="casino" value="CASINO"> <input type="hidden" name="building" value="casino">
+	</form>
+	<form action="/process" method="POST">
+		Click here to clear your gold :(<input type="submit" name="clear_button" value="CLEAR GOLD"><input type="hidden" name="clear">
+	</form>
+	<h3>LOG HISTORY:</h3>
+	<hr>
+	{%for var in session['history']%}
+		{{var}}
+		<br>
+	{%endfor%}
+  </body>
+</html>
