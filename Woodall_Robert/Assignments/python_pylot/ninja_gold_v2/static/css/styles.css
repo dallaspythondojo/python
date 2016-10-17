@@ -1,0 +1,26 @@
+.gained{
+	color: green;
+}
+
+.lost{
+	color:red;
+}
+
+#activities{
+	padding: 5px 5px;
+	height: 200px;
+	overflow: auto;
+}
+
+#gold_container{
+	display: inline-block;
+	padding: 5px 2px 5px 15px;
+}
+
+#gold_container h4, #gold_container form{
+	display: inline;
+}
+
+#gold_container h4{
+	margin-right: 10px;
+}
