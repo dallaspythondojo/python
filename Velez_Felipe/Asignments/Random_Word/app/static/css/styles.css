@@ -1,0 +1,35 @@
+* {
+  font-family: monaco;
+}
+#wrapper{
+	width: 900px;
+	background-color: gray;
+	margin: auto;
+	background-image: url(bg-clouds.png);
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	animation: animatedBackground 40s lenear infinite;
+}
+#display{
+	height:40px;
+	width: 400px;
+	border-color: black;
+	background-color: #A52A2A;
+	margin: auto;
+}
+h3{
+	text-align: center;
+}
+button{
+	margin: auto;
+	display: block;
+}
+h1{
+	text-align: center;
+}
+
+@keyframes animatedBackground{
+	from{background-position: 0 0;}
+	to{background-position: 100% 0}
+}
+

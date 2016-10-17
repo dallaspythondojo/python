@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div id='wrapper'>
+    	<h3>Random Word attempt # {{session['Number']}}</h3>
+    	<div id='display'>
+    		<h1>{{session['generator']}}</h1>
+    	</div>
+    	<form action="/process" method ='POST'>
+    	<button type ="submit">Generate</button>
+    	</form>
+    	<form action ="/reset" method =  'POST'>
+    	<button type = "submit">Clear</button>
+    	</form>
+    </div>
+  </body>
+</html>
