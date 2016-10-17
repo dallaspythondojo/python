@@ -1,0 +1,51 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <style>
+        * {
+            text-align: center;
+            font-family: Verdana, geneva, sans-serif
+        }
+        button {
+            background-color: #009fbd;
+            border-radius: 5px;
+            color: white;
+            font-weight: lighter;
+            font: tahoma;
+        }
+        button .clear {
+            background-color: silver;
+            border-radius: 5px;
+            color: white;
+            font-weight: lighter;
+            font: tahoma;
+
+        }
+        .top {
+            display: inline-block;
+            padding: 10px;
+        }
+        .bottom {
+            border: 1px solid grey;
+            display: inline-block;
+            font-size: 24px;
+            padding: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        <p class="top">
+            Random Word (attempt # {{ attempt }})
+        </p><br>
+        <p class="bottom">
+            {{ random }}
+        </p>
+    </div>
+        <form action='/process' method='POST'>
+            <button type="submit" name="generate" id="generate">g e n e r a t e</button>
+        </form>
+        <form action='/clear' method='POST'>
+            <button class="clear" type="submit" name="clear" id="clear">Reset Attempts</button>
+        </form>
+      </body>
+    </html>
