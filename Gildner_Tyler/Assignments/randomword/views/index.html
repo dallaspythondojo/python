@@ -1,0 +1,16 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <form action='/process' method='POST'>
+        <button type="submit" name="randomize" id="randomize">Randomize</button>
+    </form>
+    <h1>Random Word (attempt # {{ attempt }})</h1>
+    <p>
+        {{session['random']}}
+    </p>
+    <form action='/clear' method='POST'>
+        <button class="clear" type="submit" name="clear" id="clear">Reset</button>
+    </form>
+  </body>
+</html>
