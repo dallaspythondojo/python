@@ -1,0 +1,94 @@
+<html>
+  <head>
+  	<title>Ninja Gold v2.0 (Pylot)</title>
+  	<!-- links/scripts for bootstrap -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+  	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Your Gold:</h4>
+				<div id="gold_container" class="panel panel-default">
+					<h4>{{ gold_count }}</h4>
+					<form action="/reset">
+						<input class="btn btn-danger" type="submit" value="Reset">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Farm</h3>
+					</div>
+					<div class="panel-body">
+						<h4>(earns 10-20 golds)</h4>
+						<form action="/process_gold" method="post">
+							<input type="hidden" name="location" value="farm">
+							<input class="btn btn-primary" type="submit" value="Find Gold!">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Cave</h3>
+					</div>
+					<div class="panel-body">
+						<h4>(earns 5-10 golds)</h4>
+						<form action="/process_gold" method="post">
+							<input type="hidden" name="location" value="cave">
+							<input class="btn btn-primary" type="submit" value="Find Gold!">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>House</h3>
+					</div>
+					<div class="panel-body">
+						<h4>(earns 2-5 golds)</h4>
+						<form action="/process_gold" method="post">
+							<input type="hidden" name="location" value="house">
+							<input class="btn btn-primary" type="submit" value="Find Gold!">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Casino</h3>
+					</div>
+					<div class="panel-body">
+						<h4>(earns/takes 0-50 golds)</h4>
+						<form action="/process_gold" method="post">
+							<input type="hidden" name="location" value="casino">
+							<input class="btn btn-primary" type="submit" value="Find Gold!">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h5>Activities:</h5>
+				<div id="activities" class="panel panel-default">
+					{% for item in log %}
+						<p class="{{ item['outcome'] }}">{{ item['activity'] }}</p>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+  	</div>
+  </body>
+</html>
