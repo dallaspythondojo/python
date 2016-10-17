@@ -1,0 +1,31 @@
+* {
+  font-family: monaco;
+  margin: auto;
+}
+#wrapper{
+	width:900px;
+	/*background-color: #4682B4;*/
+	padding: 40px;
+}
+#time_date{
+	border-color: black;
+	border-width: 5px;
+	background-color: #A9A9A9;
+	height: 30px;
+	width: 300px;
+	text-align: center;
+	margin: auto;
+	vertical-align: middle;
+}
+h3{
+	vertical-align: middle;
+	color: white;
+}
+#display{
+	height:100px;
+	width:600px;
+	margin: 30px 150px 30px 150px;
+	background-color: #708090;
+	text-align: center;
+	padding-top: 40px;
+}
