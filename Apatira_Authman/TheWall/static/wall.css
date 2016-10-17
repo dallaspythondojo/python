@@ -1,0 +1,83 @@
+﻿*{
+    padding:0px;
+    margin:0px;
+}
+
+#wrapper{
+    width:960px;
+    padding:10px;
+    margin:10px auto;
+}
+
+.content
+{
+    background-color: lightgrey;
+}
+
+form
+{
+    background-color:lightgrey;
+}
+
+form input
+{
+  margin:10px;
+  background-color:#326cc9;
+  border-radius:4px; 
+}
+
+form label, p
+{
+    margin: 10px;
+}
+
+form textarea
+{
+    display:block;
+    margin:10px;
+}
+
+.comments
+{
+    margin-left:40px;
+    color:red;
+    font-weight:bold;
+}
+
+.messages
+{
+    color:green;
+}
+
+#postComment
+{
+    background-color:#289622;
+    margin-left:40px;
+    border-radius:4px;
+
+}
+
+#header
+{
+    height: 60px;
+
+}
+
+#header h2
+{
+    display:inline-block
+}
+
+#header p 
+{
+    display:inline-block;
+    margin:10px;
+    float:right
+}
+
+#header form
+{
+    display:inline-block;
+    margin:10px;
+    float:right;
+}
