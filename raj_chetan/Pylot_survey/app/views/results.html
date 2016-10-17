@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>results page</title>
+</head>
+<body>
+Here are your results:
+Name: {{session['name']}}
+Favorite Language: {{session['favorite_language']}}
+Location: {{session['location']}}
+Number of times information submitted: {{session['counter']}}
+<hr>
+<a href="/">Return to home page...</a>
+<form action="/process" method="POST">
+	<input type="hidden" name="clear">
+	<input type="submit" name="clear_buttom" value="CLEAR COUNTER">
+</form>
+</body>
+</html>
