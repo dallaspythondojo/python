@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="wrapper">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for i in messages %}
+            <h1>{{ i }}</h1>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <h1>Add a new course</h1>
+      <form class="" action="/courses/add" method="post">
+        <div class="name"> Name: <input type="text" name="name" value=""></div>
+        <div class="description"> Description: <textarea name="description" rows="8" cols="40"></textarea></div>
+        <input class="button" type="submit" name="name" value="Add">
+      </form>
+      <h1>Courses</h1>
+      <table>
+        <tr>
+          <th>Course Name</th> <th>Description</th> <th>Date added</th> <th>Actions</th>
+        </tr>
+        {% for i in all %}
+          <tr>
+            <td>{{ i['name'] }}</td>
+            <td>{{ i['description'] }}</td>
+            <td>{{ i['date'] }}</td>
+            <td><a href="/courses/destroy/{{ i['id'] }}"> Remove </a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
