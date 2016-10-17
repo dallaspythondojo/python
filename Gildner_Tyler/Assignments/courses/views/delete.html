@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        DELETE PAGE!
+        {% for courses in courses: %}
+        <p>ID: {{ courses['id']}}</p>
+        <p>Name: {{ courses['name'] }}</p>
+        <p>Description: {{ courses['description'] }}</p>
+        <p>Created Date: {{ courses['created_at']}}
+        <form action="/{{courses['id']}}/delete" method="POST">
+          <input type="submit" name='delete' value="Delete Course!" >
+        </form>
+        {% endfor %}
+
+    </body>
+</html>
