@@ -1,0 +1,20 @@
+* {
+  font-family: monaco;
+  margin: 0px;
+  padding: 0px;
+}
+#head{
+	height: 60px;
+	vertical-align: middle;
+}
+#buildings{
+	height:150px;
+	width: 200px;
+	margin: 10px;
+	display: inline-block;
+	border: 2px solid black;
+	text-align: center;
+}
+#activs{
+	border: 1px solid black;
+}
