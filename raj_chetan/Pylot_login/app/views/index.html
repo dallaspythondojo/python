@@ -1,0 +1,39 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+	<h1>Welcome to our login page.</h1>
+	<hr>
+	<h3>Login.</h3>
+	<form action="/process_login" method="POST">
+		Email: <input type="text" name="email"><br>
+		Password: <input type="text" name="password">
+		<input type="hidden" name="login_hidden"><br>
+		<input type="submit" name="login_submit" value="Login.">
+	</form>
+	<h3>Register.</h3>
+	<form action="/process_registration" method="POST">
+		First Name: <input type="text" name="first_name"><br>
+		Last Name: <input type="text" name="last_name"><br>
+		Email: <input type="text" name="email"><br>
+		Password: <input type="text" name="password"><br>
+		Confirm PW: <input type="text" name="confirm_password">
+		<input type="hidden" name="registration_hidden"><br>
+		<input type="submit" name="registration_hidden" value="Register.">	
+	</form>
+	{%with messages = get_flashed_messages()%}
+		{%if messages%}
+		<h3>There were some errors with your submission.</h3>
+			{%for message in messages%}
+				{{message}}
+			{%endfor%}
+		{%endif%}
+	{%endwith%}
+	<h3>List of users.</h3>
+	{%for var in all_users%}
+		{{var['first_name']}}, {{var['last_name']}}, {{var['email']}}<br>
+	{%endfor%}
+  </body>
+</html>

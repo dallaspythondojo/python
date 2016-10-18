@@ -1,0 +1,14 @@
+* {
+  font-family: monaco;
+}
+table, th, td{
+	border: 1px solid black;
+}
+th, td{
+	padding: 3px;
+	text-align: left;
+}
+table{
+	border-spacing: 0px;
+}
+
