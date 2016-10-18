@@ -1,0 +1,31 @@
+* {
+  font-family: sans-serif;
+}
+.error_box{
+  width: 320px;
+  margin: auto;
+}
+.wrapper{
+  width: 300px;
+  margin: auto;
+}
+h1{
+    margin-top: 100px;
+}
+label{
+  display: block;
+
+  margin-bottom: 10px;
+}
+input{
+    float: right;
+}
+.button{
+  margin-top: 15px;
+  width: 70px;
+  height: 25px;
+  background-color: lightblue;
+  border: 2px solid black;
+  box-shadow: 2px 2px 1px 0 black;
+  float: right;
+}
