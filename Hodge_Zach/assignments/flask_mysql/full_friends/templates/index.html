@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Full Friends index</title>
+    </head>
+    <body>
+        <h1>Friends List</h1>
+        <hr>
+        {% for friend in data: %}
+        <p>First Name: {{ friend['first_name'] }}</p>
+        <p>Last Name: {{ friend['last_name'] }}</p>
+        <p>Email: {{ friend['email'] }}</p>
+        <p>Date Created: {{ friend['created_at'] }}</p>
+        <form action="/friends/<id>/edit" method="post">
+            <input type="submit" name="Edit" value="Edit">
+        </form>
+        <form action="/friends/<id>/delete" method="post">
+            <input type="submit" name="submit" value="Delete">
+        </form>
+        <hr>
+        {% endfor %}
+
+        <form action="/friends" method="post">
+            <input type="submit" name="add" value="Add Friend">
+        </form>
+    </body>
+</html>
