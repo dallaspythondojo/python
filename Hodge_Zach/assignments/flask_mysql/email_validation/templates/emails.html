@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Emails</title>
+    </head>
+    <body>
+        <h2>The email you entered, {{ email }}, was valid!</h2>
+        <p>These are the emails entered:</p>
+        {% for emails in data: %}
+        <p>Email: {{ emails['email'] }}</p>
+        <p>Date Created: {{ emails['created_at'] }}</p>
+        <hr>
+        {% endfor %}
+    </body>
+</html>
