@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/friend.css" type="text/css">
+  </head>
+  <body>
+    <h1>Friends Using Pylot</h1>
+    <div>
+           <div>
+               {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                       {% for message in messages %}
+                           <p>{{message}}</p>
+                       {% endfor %}
+                   {% endif %}
+               {% endwith %}
+           </div>
+        <form action="/add" method="post" class="form">
+           <h2>Resgistration</h2>
+            <label for="fname">First Name: <input type="text" name="fname"/></label>
+            <label for="lname">Last Name: <input type="text" name="lname"></label>
+            <label for="email">Email: <input type="email" name="email"/></label>
+            <label for="pwhash">Password: <input type="password" name="pwhash"/></label>
+            <label for="rpwd">Repeat Password: <input type="password" name="rpwd"/></label>
+            <button type="submit" value="submit">Register</button>
+        </form>
+        <form action="/login" method="post" class = "form">
+            <h2>Login</h2>
+            <label for="email">Email: <input type="email" name="email"/></label>
+            <label for="pwhash">Password: <input type="password" name="pwd"/></label>
+            <button type="submit" value="submit">Log In</button>
+        </form>
+    </div>
+
+  </body>
+</html>
