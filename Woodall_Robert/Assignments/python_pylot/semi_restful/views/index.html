@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>All Products | Semi-RESTful</title>
+		<!-- links/scripts for bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+	</head>
+	<body>
+		<div class="container">
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+				{% for message in messages %}
+				  <div class="alert alert-danger alert-dismissable" role="alert">
+					  <button type="button" class="close" data-dismiss="alert">
+						<span>&times;</span>
+					  </button>
+					  {{ message }}
+				  </div>
+				{% endfor %}
+			  {% endif %}
+			{% endwith %}
+			
+			<h3>Products</h3>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<th class="text-center">Name</th>
+					<th class="text-center">Description</th>
+					<th class="text-center">Price</th>
+					<th class="text-center" colspan="3">Actions</th>
+				</thead>
+				<tbody>
+					{% for product in products %}
+						<tr>
+							<td>{{ product['name'] }}</td>
+							<td>{{ product['description'] }}</td>
+							<td>${{ product['price'] }}</td>
+							<td class="text-center"><a href="/products/show/{{ product['id'] }}">show</a></td>
+							<td class="text-center"><a href="/products/edit/{{ product['id'] }}">edit</a></td>
+							<td class="text-center"><a class="btn btn-danger" href="/products/delete/{{ product['id'] }}" role="button">remove</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div><a href="/products/new">Add new product</a></div>
+		</div>
+	</body>
+</html>
