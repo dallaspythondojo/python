@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Products</h1>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+        {% for i in all %}
+          <tr>
+            <td>{{ i['name'] }}</td>
+            <td>{{ i['description'] }}</td>
+            <td>${{ i['price'] }}</td>
+            <td><a href="/products/show/{{ i['id'] }}">Show</a> | <a href="/products/edit/{{ i['id'] }}">Edit</a> | <a href="/products/destroy/{{ i['id'] }}"><button>Remove</button></a></td>
+          </tr>
+        {% endfor %}
+      </table>
+      <h3><a href="/products/new">Add a new Product</a></h3>
+    </div>
+  </body>
+</html>

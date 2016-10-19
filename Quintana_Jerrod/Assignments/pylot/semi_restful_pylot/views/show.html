@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Product {{ show['id'] }}</h1>
+    <p>Name: {{ show['name'] }}</p>
+    <p>Description: {{ show['description'] }}</p>
+    <p>Price: {{ show['price'] }}</p>
+    <p><a href="/products/edit/{{ show['id'] }}">Edit</a> | <a href="/products">Back</a></p>
+  </body>
+</html>

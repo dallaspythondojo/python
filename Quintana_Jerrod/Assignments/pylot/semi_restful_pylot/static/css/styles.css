@@ -1,0 +1,17 @@
+* {
+  font-family: sans-serif;
+}
+.wrapper{
+  width: 600px;
+  margin: 100px auto;
+}
+table{
+  border: 3px solid black;
+}
+td{
+    padding: 10px;
+}
+button{
+  background-color: white;
+  box-shadow: 3px 3px 3px 0 black;
+}
