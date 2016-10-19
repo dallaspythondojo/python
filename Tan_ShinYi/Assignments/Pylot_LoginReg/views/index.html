@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Login & Reg | Home</title>
+    <link rel="stylesheet" href="/static/css/success.css" type="text/css">
+  </head>
+  <body>
+    <div class="reg_login">
+      <h2>Registration</h2>
+      {% if session['login_v_reg'] == "reg"%}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      {% endif %}
+      <form action='/login_reg' method='POST'>
+      <table>
+        <tbody>
+          <tr>
+            <td>First Name:</td>
+          <td><input type="text" name="first_name" value="{{session['first_name']}}" /></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+          <td><input type="text" name="last_name" value="{{session['last_name']}}" /></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+          <td><input type="text" name="email" value="{{session['email']}}" /></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+          <td><input type="password" name="password" /></td>
+        </tr>
+        <tr>
+            <td>Confirm Password:</td>
+          <td><input type="password" name="con_password" /></td>
+        </tr>
+        <tr>
+          <td><input type=hidden name="action" value="reg" /></td>
+          <td><input type="submit" value="Register!"></td>
+      </tbody>
+    </table>
+      </form>
+    </div>
+
+    <div class="reg_login">
+      <h3>Log In</h3>
+      {% if session['login_v_reg'] == "login"%}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      {% endif %}
+      <form action='/login_reg' method='POST'>
+        <table>
+          <tbody>
+            <tr>
+              <td>Email:</td>
+              <td><input type="text" name="email1" value="{{session['email1']}}"></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input type="password" name="password1"></td>
+            </tr>
+            <tr>
+              <td><input type=hidden name="action" value="login" /></td>
+              <td><input type="submit" value="Log In!"></td>
+            </tr>
+      </form>
+    </div>
+  </body>
+</html>
