@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+<body>
+	<h2>Login</h2>
+		<form action='/process' method='post'>
+		<input type='hidden' name='home' value='login'>
+		<p>Email:</p>
+		<input type='email' name='email'>
+		<p>Password:</p>
+		<input type='password' name='password'>
+		<p><input type="submit" value="Login"></p>
+		</form>
+					{% with messages = get_flashed_messages() %}
+			     		{% if messages %}
+			       			{% for message in messages %}
+			         			<p>{{message}}</p>
+			       			{% endfor %}
+			     		{% endif %}
+			   		{% endwith %}
+	<h2>Register</h2>
+		<form action='/process' method='post'>
+		<input type='hidden' name='home' value='register'>
+		<p>First Name: <input type='text' name='first'> </p>
+		<p>Last Name: <input type='text' name='last'></p>
+		<p>Email: <input type='email' name='email'></p>
+		<p>Password: <input type='password' placeholder='At Least 8 Characters' name='password'></p>
+		<p>Confirm Password: <input type='password' name='confirm'></p>
+		<p><input type='submit' value='Register'></p>
+		</form>
+
+</body>
+</html>
