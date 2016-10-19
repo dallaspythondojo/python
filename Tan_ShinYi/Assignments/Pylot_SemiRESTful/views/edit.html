@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title> Product {{ product['id'] }} Info | Semi Restful Route Demo </title>
+    <link rel="stylesheet" href="/static/css/styles1.css" type="text/css">
+  </head>
+  <body>
+    <h1>Product {{ product['id'] }}</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/products/update/{{product['id']}}" method='POST'>
+      <table>
+        <tbody>
+            <tr>
+              <td> Name:</td>
+            </tr>
+            <tr>
+              <td><input type="Text" name="name" value="{{product['name']}}" /></td>
+            </tr>
+            <tr>
+              <td> Description:</td>
+            </tr>
+            <tr>
+              <td><textarea name="description">{{product['description']}}</textarea></td>
+            </tr>
+            <tr>
+              <td> Price:</td>
+            </tr>
+            <tr>
+              <td>$<input type="text" name="price" value="{{product['price']}}" /></td>
+            </tr>
+            <tr>
+              <td><input type="submit" value="Update" /></td>
+            </tr>
+        </tbody>
+      </table>
+    </form>
+
+
+    <a href="/products/show/{{product['id']}}">Show</a> | <a href="/">Back</a>
+  </body>
+</html>
