@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+    function BinSearch(arr, val){
+      var mid = Math.floor(arr.length/2);
+      var n = [];
+      if (arr[mid] == val){
+        return true;
+      } else if (arr.length <= 3){
+          if (arr[0] == val || arr[length-1] == val){
+            return true;
+          } else{
+            return false;
+          }
+      } else if (arr[mid] > val){
+        n = arr.slice(0, mid);
+      } else{
+        n = arr.slice(mid, arr.length)
+      }
+      return BinSearch(n,val)
+    }
+    console.log(BinSearch( [1,2,3,4,5,6,7,8,9,10], 1))
+  });
+
+
+  $(function(){
+    // or here, pick one.
+  });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
