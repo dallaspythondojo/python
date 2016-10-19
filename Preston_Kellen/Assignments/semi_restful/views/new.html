@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div>
+      <h3>Add a new product</h3>
+      <form action="/products/create" method="post">
+        <label>Name</label><input type="text" name="name">
+        <label>Description</label><input type="text" name="description">
+        <label>Price</label><input type="text" name="price">
+        <input type="submit" name="submit" value="Create">
+      </form>
+      <a href="/">Go back</a>
+    </div>
+  </body>
+</html>

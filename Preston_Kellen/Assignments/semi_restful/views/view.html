@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div>
+      {% if show %}
+      <h3>Product {{show['id']}}</h3>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td>{{show['name']}}</td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td>{{show['description']}}</td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td>{{show['price']}}</td>
+        </tr>
+      <table>
+      <a href="/products/edit/{{show['id']}}">Edit</a><a href="/">Back</a>
+      {% endif %}
+    </div>
+  </body>
+</html>
