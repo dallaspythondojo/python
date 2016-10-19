@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title> Creat a new product | Semi Restful Route Demo </title>
+    <link rel="stylesheet" href="/static/css/styles1.css" type="text/css">
+    <style>
+    table{
+      border:2px solid black;
+    }
+    </style>
+  </head>
+  <body>
+
+    <h1>Add a new product</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+    <form action="/products/create" method='POST'>
+      <table>
+        <tbody>
+            <tr>
+              <td> Name:</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="name" value="{{session['name']}}" placeholder="Type your product name!" /></td>
+            </tr>
+          <label for="description">
+            <tr>
+              <td> Description:</td>
+            </tr>
+            <tr>
+              <td><textarea name="description" placeholder="Type your product description!">{{session['description']}}</textarea></td>
+            </tr>
+          </label>
+          <label for="description">
+            <tr>
+              <td> Price:</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="price" value="{{session['price']}}" placeholder="Name your price!" /></td>
+            </tr>
+          </label>
+          <tr>
+            <td><input type="submit" value="Create" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+
+
+    <p><a href="/">Go Back</a></p>
+  </body>
+</html>

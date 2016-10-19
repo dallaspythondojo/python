@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title> All Products | Semi Restful Route Demo </title>
+    <link rel="stylesheet" href="/static/css/styles1.css" type="text/css">
+  </head>
+  <body>
+    <h1>Products</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Price</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products: %}
+        <tr>
+          <td>{{product['name']}}</td>
+          <td>{{product['description']}}</td>
+          <td>${{product['price']}}</td>
+          <td>
+            <a href="/products/show/{{product['id']}}">Show</a> |
+            <a href="/products/edit/{{product['id']}}">Edit</a> |
+            <form action="/products/destory/{{product['id']}}" method="post">
+              <input type="submit" value="Remove" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/products/new">Add a new product</a>
+  </body>
+</html>
