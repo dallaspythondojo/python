@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/product.css" type="text/css">
+  </head>
+  <body>
+        <h1>Edit product to list</h1>
+    <form action="/update/{{product['id']}}" method="post">
+        <label for="name">Product Name: </label><input type="text" name="name" value="{{product['name']}}"/>
+        <label for="description" name="">Description: </label><input type="text" name="description" value="{{product['description']}}"/>
+        <label for="Price">Price:</label><input type="float" name="price" value="{{product['price']}}"/>
+        <button type="submit" value="submit">Update</button>
+    </form>
+    <a href="/product/{{product['id']}}">show</a>  <a href="/">back</a>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/product.css" type="text/css">
+  </head>
+  <body>
+    <h1>Adding product to list</h1>
+    <form action="/add" method="post">
+        <label for="name">Product Name: </label><input type="text" name="name"/>
+        <label for="description" name="">Description: </label><input type="text" name="description"/>
+        <label for="Price">Price:</label><input type="float" name="price"/>
+        <button type="submit" value="submit">Create</button>
+    </form>
+    <a href="/">Go Back</a>
+  </body>
+</html>

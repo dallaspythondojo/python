@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/product.css" type="text/css">
+  </head>
+  <body>
+    <h1>Product List</h1>
+    
+    <table class="list">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        <tbody>
+           {% for key in products %}
+            <tr>
+               <td>{{key['name']}}</td>
+               <td>{{key['description']}}</td>
+               <td>{{key['price']}}</td>
+                <td><a href="product/{{key['id']}}">Show</a><a href="/product/edit/{{key['id']}}">Edit</a><a href="/product/remove/{{key['id']}}"><button>Remove</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </thead>
+    </table>
+    <a href="/addproduct">Add Products</a>
+  </body>
+</html>
