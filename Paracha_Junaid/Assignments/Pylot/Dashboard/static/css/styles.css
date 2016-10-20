@@ -1,0 +1,23 @@
+* {
+  font-family: monaco;
+}
+#wrapper {
+	width: 970px;
+	margin: 0 Auto;
+	text-align: center;
+	padding: 20px;
+	
+
+}
+form {
+	text-align: left;
+	display: inline-block;
+	margin: 20px;
+	vertical-align: top;
+/*	background: linear-gradient(bottom right, darkblue, white);*/
+
+
+}
+input {
+	display: block;
+}

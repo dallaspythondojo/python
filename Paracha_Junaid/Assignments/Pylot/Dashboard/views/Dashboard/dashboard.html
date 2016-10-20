@@ -1,0 +1,77 @@
+<html>
+  <head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+	<div class="container">
+		<div id=header>
+			<h2 class="block">{{session['first_name']}} {{session['last_name']}}
+			|
+			<a href="/Users/Dashboard"><strong>Dashboard</strong></a>
+			|
+			<a href="">Profile</a>
+			|
+			<a href="/Logout">Logout</a>	
+			</h2>
+		</div>
+		<div>
+			<h1>All users</h1>
+			{%if session['user_level'] == 9%}
+				<form action="/Users/Dashboard/add_new_user">
+					<button>Add new user</button>
+				</form>
+			{%endif%}
+			{%if session['delete_user'] == True%}
+			<p>Are you sure you want to delete {{session['delete_email']}}
+				<a href="/Dashboard/confirm_remove">Confirm</a>
+				|
+				<a href="/Users/Dashboard">Go Back</a>
+			</p>
+			{%endif%}
+			<table class="table table-bordered">
+				<tr>
+					<th>Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Created At</th>
+					<th>User Level</th>
+					{%if session['user_level'] == 9%}
+						<th>Action</th>
+					{%endif%}
+
+				</tr>
+				{%for ele in users%}
+				<tr>
+					<td>{{ele['id']}}</td>
+					<td>{{ele['first_name']}}</td>
+					<td>{{ele['last_name']}}</td>
+					<td><a href="/Users/Wall/{{ele['id']}}">{{ele['email']}}</a></td>
+					<td>{{ele['created_at']}}</td>
+					{%if ele['user_level'] == 9%}
+						<td>{{"Admin"}}</td>
+					{%else%}
+					<td>{{"Normal"}}</td>
+					{%endif%}
+					{%if session['user_level'] == 9%}
+						<td>
+							<a href="/Users/Dashboard/edit/{{ele['id']}}">Edit</a>
+							|
+							<a href="/Dashboard/remove/{{ele['id']}}/{{ele['email']}}">Remove</a>
+						</td>
+
+					{%endif%}
+				</tr>
+				{%endfor%}
+			</table>
+		</div>
+	</div>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="Junaid_page" content="Discription">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">			
+			<div id="header">        
+				<h2 class="block">{{session['first_name']}} {{session['last_name']}}
+				|
+				<a href="/Users/Dashboard"><strong>Dashboard</strong></a>
+				|
+				<a href="">Profile</a>
+				|
+				<a href="/Logout">Logout</a>  
+				</h2>
+			</div> 
+			<div id="main">
+				<h4><strong> Name: </strong> {{profile_user['first_name']}} {{profile_user['last_name']}}</h4>
+				<h4><strong> User ID: </strong> {{profile_user['id']}} </h4>
+				<h4><strong> Email: </strong> {{profile_user['email']}} </h4>
+				<h4><strong> Registered At: </strong> {{profile_user['created_at']}} </h4>				
+
+				<label> Post a message          
+				<form  class="form-horizontal" action="/Users/Wall/post_message/{{profile_user['id']}}" method="POST">     
+					<input class="form-control" type="text" name="message">
+					<input class="post_button" type="submit" name="back" value="Post message">
+				</form></label>
+				{%for val in user_messages%}
+				<b><p>Posted by:{{val['first_name']}} {{val['last_name']}}  Posted on:{{val['created_at']}}</p></b>
+				<p>{{val['message']}}</p>
+				<div id="comments">          
+					{%for ele in message_comment%}
+						{%if ele['message_id'] == val['mid'] %}
+							<p>   Comment by:{{ele['first_name']}} {{ele['last_name']}} At:{{ele['created_at']}}<p>
+							<p>   {{ele['comment']}}</p>
+							<form action="/Users/Wall/delete_comment/{{ele['cid']}}/{{profile_user['id']}}" method="POST">
+								{%if ele['user_id'] == session['id']: %}
+								<input class="delete_button" type="submit" value="Delete message">
+								{%endif%}
+							</form>
+						{%endif%}
+					{%endfor%}
+					<form class="form-horizontal" action="/Users/Wall/post_comment/{{val['mid']}}/{{profile_user['id']}}," method="POST">     
+						<input class="form-control" type="text" name="comment">
+						<input class="comment_button" type="submit" name="back" value="Post comment">							
+					</form></label>
+				</div>
+				
+				{%endfor%}
+
+			</div>
+		</div>
+	</body>
+</html>
