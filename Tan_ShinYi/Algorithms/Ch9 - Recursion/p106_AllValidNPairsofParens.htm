@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>All Valid N Pairs of Parens</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+    // Could be consolidated into rValidParens
+    function allValidNParens(numParens)
+    {
+      var arr = [];
+      rValidNParens(numParens, 0, "", arr);
+      return arr;
+    }
+
+    function rValidNParens(parens, opens, subStr, arr)
+    {
+      // No more parens & all are closed: DONE.
+      if (!parens && !opens) {
+        arr.push(subStr);
+        return arr;
+      }
+
+      // One option is to close an open paren.
+      if (opens) {
+        rValidNParens(parens,       opens - 1,
+                      subStr + ")", arr);
+      }
+      // Another option is to open a new paren.
+      if (parens) {
+        rValidNParens(parens - 1,   opens + 1,
+                      subStr + "(", arr);
+      }
+      return arr;
+    }
+
+    temp = allValidNParens(4);
+    console.log(temp);
+  });
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
