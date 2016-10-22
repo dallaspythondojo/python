@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>Recursive Sigma</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+
+    function rSigma(limit){
+      if(limit<1){return 0;}
+      return limit+ rSigma(limit-1);
+    }
+
+    console.log(rSigma(4));
+
+  });
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
