@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="Junaid_page" content="Discription">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+</head>
+  <body>
+    <div id="wrapper">
+      
+      <div id="header">        
+        <h1>Codingdojo Wall </h1>
+        <p>{{session['user info']['first_name']}}</p>
+        <form action='/logout'>     
+          <input type="submit" name="back" value="Logout">
+        </form>
+      </div> 
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+          <p>{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <div id="main">
+        <label> Post a message          
+        <form  action='/post_message' method="POST">     
+          <input class="post_new" type="text" name="message">
+          <input class="post_button" type="submit" name="back" value="Post message">
+        </form></label>
+        {%for val in user_messages%}
+        <b><p>Posted by:{{val['first_name']}} {{val['last_name']}}  Posted on:{{val['created_at']}}</p></b>
+        <p>{{val['message']}}</p>
+        <div id="comments">          
+          {%for ele in message_comment%}
+            {%if ele['message_id'] == val['mid'] %}
+              <p>   Comment by:{{ele['first_name']}} {{ele['last_name']}} At:{{ele['created_at']}}<p>
+              <p>   {{ele['comment']}}</p>
+              <form action="/delete_comment/{{ele['cid']}}" method="POST">
+                {%if ele['user_id'] == session['user info']['id']: %}
+                <input class="delete_button" type="submit" value="Delete message">
+                {%endif%}
+              </form>
+            {%endif%}
+          {%endfor%}
+          <form action="/post_comment/{{val['mid']}}" method="POST">     
+            <input class="comment_new" type="text" name="comment">
+            <input class="comment_button" type="submit" name="back" value="Post comment">
+            
+                
+              
+          </form></label>
+        </div>
+        
+        {%endfor%}
+
+      </div>
+    </div>
+  </body>
+</html>
