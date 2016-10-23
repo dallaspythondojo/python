@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles_dashboard.css" type="text/css">
+
+  </head>
+  <body>
+
+    <div id="nav"><h2>Test App</h2> <h3><a href="/dashboard/admin"><b>Dashboard</b></a></h3> <h3><a href="/users/edit"> Profile</a></h3><div id="log"><a href="/logoff">Log off</a></div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+     {% if messages %}
+       <ul class=flashes>
+       {% for category, message in messages %}
+         <li class="{{ category }}">{{ message }}</li>
+       {% endfor %}
+       </ul>
+     {% endif %}
+   {% endwith %}
+
+
+    <div id="wrapper">
+      <table id="title">
+        <tr>
+          <td><h2>All Users</h2><td>
+        </tr>
+      </table>
+
+      <table id="users">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Registered At</td>
+            <td>User Level</td>
+          </tr>
+        </thead>
+        <tbody>
+
+          {%for user in users:%}
+          <tr>
+            <td>{{user['id']}}</td>
+            <td><a href="/users/show/{{user['id']}}">{{user['name']}}</a></td>
+            <td>{{user['email']}}</td>
+            <td>{{user['date_reg']}}</td>
+            {%if user['user_level']==9:%}
+            <td>Admin</td>
+            {%else:%}
+            <td>User</td>
+            {%endif%}
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+#post_message{
+  width: 700px;
+  margin: 0px auto;
+  display: block;
+  margin-top: 100px;
+}
+
+  #post_message textarea{
+    width: 700px;
+    height: 70px;
+  }
+
+  #post_message .button{
+    margin-top: 7px;
+    text-align: right;
+    display: block;
+  }
+
+  #post_message .button input{
+    background-color:lightblue;
+  }
+
+  .messages{
+    width: 700px;
+    margin: 20px auto;
+    display: block;
+  }
+
+    .messages h4{
+      margin-left: -10px;
+    }
+
+  .post_comment{
+    width: 600px;
+    margin: 0px auto;
+    display: block;
+    margin-top: 30px;
+  }
+
+    textarea[name="comment"]{
+      margin-top: -20px;
+      width: 600px;
+      height: 60px;
+    }
+
+    .post_comment .button{
+      text-align: right;
+      display: block;
+    }
+
+    .post_comment .button input{
+      background-color: green;
+      color: white;
+    }
+
+    .comments{
+      width: 600px;
+      margin: 0px auto;
+      display: block;
+      margin-top: 30px;
+    }

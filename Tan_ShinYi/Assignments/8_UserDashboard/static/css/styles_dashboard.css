@@ -1,0 +1,36 @@
+
+#form{
+  margin: 30px 60px;
+  width: 300px;
+  padding: 25px;
+}
+
+input{
+  width: 250px;
+}
+
+td{
+  padding: 5px;
+}
+
+table{
+  margin: 7px auto;
+  width: 900px;
+}
+
+#users{
+  border: 2px solid black;
+}
+
+#users a{
+  text-decoration: underline;
+}
+
+#title{
+  margin: 30px auto;
+}
+
+
+.return{
+  margin-top: 30px;
+}

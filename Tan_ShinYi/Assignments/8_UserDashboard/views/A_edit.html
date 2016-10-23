@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>Edit user #{{user['id']}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles_edit.css" type="text/css">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.js') }}"></script>
+    <script>
+    function formFill(selected){
+
+        for(var i = 0;i < document.getElementById("user_level").length;i++){
+            if(document.getElementById("user_level").options[i].value == selected ){
+                document.getElementById("user_level").selectedIndex = i;
+            }
+        }
+    }
+
+    $(document).ready(function(){
+      formFill({{user['user_level']}});
+
+      });
+    </script>
+
+  </head>
+  <body>
+    <div id="nav"><h2>Test App</h2> <h3><a href="/dashboard/admin"><b>Dashboard</b></a></h3> <h3><a href="/users/show/1"> Profile</a></h3><div id="log"><a href="/logoff">Log off</a></div>
+    <table id="title">
+      <tr>
+        <td><h2>Edit user #{{user['id']}}</h2><td>
+        <td><div class="right"><a href="/dashboard/admin"><button>Return to Dashboard</button></a></div></td>
+      </tr>
+    </table>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+     {% if messages %}
+       <ul class=flashes>
+       {% for category, message in messages %}
+         <li class="{{ category }}">{{ message }}</li>
+       {% endfor %}
+       </ul>
+     {% endif %}
+    {% endwith %}
+    <div id="wrapper">
+      <div class="box">
+      <h2>Edit Information</h2>
+
+      <form action="/users/update" method='post'>
+        <table>
+          <tbody>
+            <tr><td><label for="email">Email Address:</label></td></tr>
+            <tr><td><input type="email" name="email" value="{{user['email']}}" /></td></tr>
+            <tr><td><label for="first_name">First Name:</label></td></tr>
+            <tr><td><input type="text" name="first_name" value="{{user['first_name']}}" /></td></tr>
+            <tr><td><label for="last_name">Last Name:</label></td></tr>
+            <tr><td><input type="text" name="last_name" value="{{user['last_name']}}" /></td></tr>
+            <tr><td><label for="user_level">User Level:</label></td></tr>
+            <tr><td><select name="user_level" id="user_level">
+              <option value="9">Admin</option>
+              <option value="1">User</option>
+            </select></td></tr>
+            <tr><td><input type="hidden" name="action" value="info" /></td></tr>
+            <tr><td><input type="hidden" name="user_id" value="{{user['id']}}" /></td></tr>
+            <tr><td><div class="right"><button type="submit">Save</button></div></td></tr>
+          </tbody>
+        </table>
+      </form>
+      </div>
+
+      <div class="box">
+      <h2>Change Password</h2>
+      <form action="/users/update" method='post'>
+        <table>
+          <tbody>
+            <tr><td><label for="password">Password:</label></td></tr>
+            <tr><td><input type="password" name="password" /></td></tr>
+            <tr><td><label for="con_password">Password Confirmation:</label></td></tr>
+            <tr><td><input type="password" name="con_password" /></td></tr>
+            <tr><td><input type="hidden" name="action" value="pw" /></td></tr>
+            <tr><td><input type="hidden" name="user_id" value="{{user['id']}}" /></td></tr>
+            <tr><td><div class="right"><button type="submit">Update Password</button></div></td></tr>
+
+          </tbody>
+        </table>
+      </form>
+    </div>
+      {%if session['user']['id']==user['id']:%}
+      <div class="box2">
+        <form action="/users/update" method="post">
+          <h2>Edit Description</h2>
+          <textarea name="description">{{user['description']}}</textarea>
+          <input type="hidden" name="action" value="desc" />
+          <input type="hidden" name="user_id" value="{{user['id']}}" />
+          <div class="right"><button>Save</button></div>
+        </form>
+      </div>
+      {%endif%}
+
+
+    </div>
+
+
+  </body>
+</html>

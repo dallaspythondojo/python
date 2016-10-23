@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles_dashboard.css" type="text/css">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1.js') }}"></script>
+    <script>
+
+
+    $(document).ready(function(){
+
+      $('.warning').click(function(){
+        if (confirm("Are you sure you want to remove this user?") == true) {
+        } else {
+          return false;
+        }
+
+      })
+
+      });
+    </script>
+
+  </head>
+  <body>
+
+    <div id="nav"><h2>Test App</h2> <h3><a href="/dashboard/admin"><b>Dashboard</b></a></h3> <h3><a href="/users/edit"> Profile</a></h3><div id="log"><a href="/logoff">Log off</a></div>
+
+
+
+    <div id="wrapper">
+      <table id="title">
+        <tr>
+          <td><h2>Manage Users</h2><td>
+          <td><div class="right"><a href="/users/new"><button>Add new</button></a></div></td>
+        </tr>
+      </table>
+
+      <table id="users">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Registered At</td>
+            <td>User Level</td>
+            <td>Actions</td>
+          </tr>
+        </thead>
+        <tbody>
+          {%for user in users:%}
+          <tr>
+            <td>{{user['id']}}</td>
+            <td><a href="/users/show/{{user['id']}}">{{user['name']}}</a></td>
+            <td>{{user['email']}}</td>
+            <td>{{user['date_reg']}}</td>
+            {%if user['user_level']==9:%}
+            <td>Admin</td>
+            {%else:%}
+            <td>User</td>
+            {%endif%}
+            <td><a href="/users/edit/{{user['id']}}">edit</a>&nbsp;&nbsp;&nbsp;
+              {%if user['id']!= session['user']['id']%}<a href="/users/destroy/{{user['id']}}" class="warning">remove</a>{%endif%}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+
+    </div>
+  </body>
+</html>
