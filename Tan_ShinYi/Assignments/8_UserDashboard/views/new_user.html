@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>New User</title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles_SigninReg.css" type="text/css">
+
+  </head>
+  <body>
+
+    <div id="nav"><h2>Test App</h2> <h3><a href="/dashboard/admin">Dashboard</a></h3> <h3><a href="/users/show"> Profile</a></h3><div id="log"><a href="/logoff">Log off</a></div>
+
+    <div class="right return"><a href="/dashboard/admin"><button>Return to Dashboard</button></a></div>
+
+
+    <div id="form">
+      <h2>Add a new user</h2>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+       {% if messages %}
+         <ul class=flashes>
+         {% for category, message in messages %}
+           <li class="{{ category }}">{{ message }}</li>
+         {% endfor %}
+         </ul>
+       {% endif %}
+      {% endwith %}
+      <form action="/users/register" method='post'>
+        <table>
+          <tbody>
+            <tr><td><label for="email">Email Address:</label></td></tr>
+            <tr><td><input type="email" name="email" value="{{session['email']}}" /></td></tr>
+            <tr><td><label for="first_name">First Name:</label></td></tr>
+            <tr><td><input type="text" name="first_name" value="{{session['first_name']}}" /></td></tr>
+            <tr><td><label for="last_name">Last Name:</label></td></tr>
+            <tr><td><input type="text" name="last_name" value="{{session['last_name']}}" /></td></tr>
+            <tr><td><label for="password">Password:</label></td></tr>
+            <tr><td><input type="password" name="password" /></td></tr>
+            <tr><td><label for="con_password">Password Confirmation:</label></td></tr>
+            <tr><td><input type="password" name="con_password" /></td></tr>
+            <tr><td><div class="right"><button type="submit">Create</button></div></td></tr>
+          </tbody>
+        </table>
+    </div>
+  </body>
+</html>

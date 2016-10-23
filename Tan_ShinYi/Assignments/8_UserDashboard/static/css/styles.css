@@ -1,0 +1,30 @@
+* {
+  font-family: sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+#nav{
+  position: relative;
+  height: 20px;
+  border: 2px solid black;
+  display: block;
+  padding: 10px 60px;
+}
+
+#nav h3, #nav h2{
+  display: inline;
+  padding: 0px 5px;
+}
+
+#log{
+  position: absolute;
+  top: 15px;
+  right: 60px;
+}
+
+.right{
+  text-align: right;
+}
