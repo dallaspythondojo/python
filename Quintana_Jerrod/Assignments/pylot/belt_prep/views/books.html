@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Welcome, {{ session['user']['alias']}}!</h1>
+      <p><a href="/books/add">Add Book and Review</a>  <a href="/logout">Logout</a></p>
+      <div class="main">
+        <h1>Recent Book Reviews:</h1>
+        {% for i in recent %}
+          <h2><a href="/books/{{ i['bid']}}">{{ i['title'] }}</a></h2>
+          <p>Rating: {{ i['rating'] }}</p>
+          <p><a href="/users/{{ i['uid'] }}">{{ i['alias'] }}</a> <i>{{ i['content'] }}</i></p>
+          <p>Posted on {{ i['date'] }}</p>
+        {% endfor %}
+      </div>
+      <div class="side">
+        Other Books with Reviews:
+        <ul>
+          {% for i in all %}
+            <li><a href="/books/{{ i['id'] }}">{{ i['title'] }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

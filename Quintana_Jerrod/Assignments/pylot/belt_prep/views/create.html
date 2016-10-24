@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p><a href="/books">Home</a>   <a href="/logout">logout</a></p>
+    <h1>Add a New Book Title and a Review:</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form class="" action="/books/create" method="post">
+      <h3>Book Title: <input type="text" name="title" value=""></h3>
+      <h3>Author:</h3>
+        <p>
+          Choose from the list: <select class="" name="aid">
+            {% for i in all %}
+              <option value="{{ i['id'] }}">{{ i['name'] }}</option>
+            {% endfor %}
+          </select>
+        </p>
+        <p>Or add a new author:<input type="text" name="new_author" value=""></p>
+        <h3>Review:<input type="text" name="content" value=""></h3>
+        <h3>Rating: <select class="" name="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select></h3>
+        <input type="submit" name="name" value="Add Book and Review">
+    </form>
+  </body>
+</html>

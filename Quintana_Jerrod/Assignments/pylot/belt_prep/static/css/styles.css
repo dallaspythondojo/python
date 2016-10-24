@@ -1,0 +1,39 @@
+* {
+  font-family: sans-serif;
+}
+.wrapper{
+  width: 980px;
+  margin: 100px auto;
+  vertical-align: top;
+}
+.box{
+  display: inline-block;
+  width: 460px;
+  border: 3px solid black;
+  padding: 20px 10px 50px 10px;
+  vertical-align: top;
+}
+label{
+  display: block;
+  margin: 20px;
+}
+input{
+  float: right;
+  width: 200px;
+  height: 25px;
+  border: 3px solid black;
+}
+.button{
+  float: none;
+  margin-left: 300px;
+  width:  100px;
+  height: 30px;
+  background: lightgreen;
+  color: blue;
+  border: 3px solid black;
+  box-shadow: 2px 2px 3px 0 black;
+  margin-top: 30px;
+}
+.add input{
+  display: block;
+}

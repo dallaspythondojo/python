@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="box">
+        <h1>Register</h1>
+        <form class="" action="/register" method="post">
+          <label for="">Name: <input type="text" name="name" value=""></label>
+          <label for="">Alias: <input type="text" name="alias" value=""></label>
+          <label for="">Email: <input type="text" name="email" value=""></label>
+          <label for="">Password: <input type="password" name="pwd" value=""></label>
+          <label for="">Confirmation Password: <input type="password" name="confirm" value=""></label>
+          <label for=""><input type="submit" name="name" value="Register" class="button"></label>
+        </form>
+        {% with messages = get_flashed_messages(category_filter =['register']) %}
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{message}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+      <div class="box">
+        <h1>Login</h1>
+        <form class="" action="/login" method="post">
+          <label for="">Alias: <input type="text" name="alias" value=""></label>
+          <label for="">Password: <input type="password" name="pwd" value=""></label>
+          <label for=""><input type="submit" name="name" value="Login" class="button"></label>
+        </form>
+        {% with messages = get_flashed_messages(category_filter =['login']) %}
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{message}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+  </body>
+</html>
