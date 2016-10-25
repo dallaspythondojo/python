@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+    function flatten(arr){
+      var newarr=[];
+      for (var i = 0; i<arr.length; i++){
+        if (Array.isArray(arr[i])){
+          var temp = flatten(arr[i])
+          for (var x = 0; x < temp.length; x++){
+            newarr.push(temp[x])
+          }
+        } else{
+          newarr.push(arr[i]);
+        }
+      }
+      return newarr;
+    }
+    console.log(flatten([1, 2, [3,4,[5,6],7], 8, 9]))
+
+  });
+
+
+  $(function(){
+    // or here, pick one.
+  });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
