@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Gotta Catch'em All</title>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+            $(document).ready(function(){
+            	$.get("http://pokeapi.co/api/v2/pokemon/{{id}}", function(response) {
+            		console.log(response.abilities[0].ability.name);
+            		var name = response.name
+            		var weight = response.weight
+            		var height = response.height
+            		var type1 = response.types[0].type.name
+            		console.log(name+weight+type1+height)
+            		$(".pokemon_information").html("<h2>"+name+"</h2><img src='http://54.70.82.18/media/{{id}}.png'<ul>Types<li>"+type1+"</li></ul><h4>Height</h4><p>"+height+"</p><h4>Weight</h4><p>"+weight+"</p>")
+            	})
+            })
+        </script>
+    </head>
+    You are requesting information for pokemon number {{id}}<hr>
+    <body>
+    <div class="pokemon_information"></div>
+	<div class="pokedex_images">
+	{%for var in range(1,30)%}
+		<a href="/{{var}}"><img src="http://54.70.82.18/media/{{var}}.png"></a>
+	{%endfor%}
+	</div>
+    </body>
+    <h2>name</h2>
+</html>
