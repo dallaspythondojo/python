@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .container{
+        margin-top: 50px;
+      }
+      *{
+        margin-bottom: 20px;
+      }
+    </style>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap-theme.min.css' %}">
+  </head>
+  <body>
+    <form class="container" action="/process" method="post">
+      {% csrf_token %}
+      <div class="input-group">
+        <span class="input-group-addon" >Your Name:</span>
+        <input type="text" class="form-control" placeholder="Name" name="name" value="">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" >Dojo Location:</span>
+        <input type="text" class="form-control" placeholder="Location" name='location'>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Favorite Language:</span>
+        <input type="text" class="form-control" placeholder="Language" name="language" value="">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Comment (optional):</span>
+        <textarea name="comment" class="form-control"rows="8" cols="40"></textarea>
+      </div>
+      <input class="btn btn-primary" type="submit" name="" value="Submit">
+    </form>
+
+    {% load staticfiles %}
+    <script src="{% static 'survey/js/jquery.min.js' %}"></script>
+    <script src="{% static 'survey/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

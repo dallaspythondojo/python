@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap-theme.min.css' %}">
+    <style media="screen">
+      .jumbo{
+        background-color: lightgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container col-xs-10 col-xs-offset-1">
+      <h3 class="jumbo jumbotron">Thanks for submitting the form! You've submitted this form {{ count }} times now</h3>
+      <div class="col-xs-10 col-xs-offset-1">
+        <h2>Submitted Information</h2>
+        <h4>Name: {{ name }}</h4>
+        <h4>Dojo Location: {{ location }}</h4>
+        <h4>Language: {{ language }}</h4>
+        <h4>Comment: {{ comment }}</h4>
+        <a class="btn btn-primary" href="/">Go Back</a>
+      </div>
+    </div>
+
+    {% load staticfiles %}
+    <script src="{% static 'survey/js/jquery.min.js' %}"></script>
+    <script src="{% static 'survey/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
