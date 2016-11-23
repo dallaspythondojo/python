@@ -1,0 +1,44 @@
+* {
+  font-family: "Comic Sans MS";
+}
+h1 {
+    text-align: center;
+}
+
+h3 {
+    display: inline-block;
+}
+.form {
+    width: 20%;
+    padding:1%;
+    margin: 10px;
+    text-align: center;
+    display: inline-block;
+    border: 2px black solid;
+    border-radius: 10px;
+    
+}
+.form button{
+    background: gold;    
+    color: inherit;
+}
+
+.act {
+    border: 2px black solid;
+    height: 100px;
+    width: 900px;
+    overflow: auto;
+    border-radius: 10px;
+}
+button {
+    background: red;
+    color: white;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.act .win{
+    color: green;
+}
+.act .lose{
+    color: red;
+}

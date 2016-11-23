@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/ninja.css" type="text/css">
+    <title>Gold Ninja with Pylot</title>
+  </head>
+  <body>
+  <h1>Ninja Gold Ver 2.0</h1>
+  
+  <div>
+      <h3>Score: </h3>
+      <h3>{{session['scores']}}</h3>
+  </div>
+  
+      <form action="/process_money/farm" method="post" class = "form" >
+      
+             <h4>Farm</h4>
+              <p>(earns 10-20 golds</p>
+              <button type="submit" value = "sbmit">Find Gold!!</button>
+       
+      </form>
+        <form action="/process_money/cave" method="post" class = "form">
+      
+             <h4>Cave</h4>
+              <p>(earns 5-10 golds)</p>
+              <button type="submit" value = "submit">Find Gold!!</button>
+ 
+        </form>
+          <form action="/process_money/house" method="post" class = "form">
+        
+             <h4>House</h4>
+              <p>(earns 2-5 golds)</p>
+              <button type="submit" value = "submit">Find Gold!!</button>
+         </form>
+
+        <form action="/process_money/casino" method="post" class = "form">
+          
+             <h4>Casino</h4>
+              <p>(earns/takes 0-50 golds)</p>
+              <button type="submit" value = "submit">Find Gold!!</button>
+
+      </form>
+      
+    <h3>Activity</h3>
+    <div class="act">
+        {% for message in session['message'] %}
+        <p class="{{session['format']}}">
+   
+        {{message}}</p>
+    {% endfor %}
+    </div>
+     <form action="/reset">
+      <button type = "submit">Reset</button></form>
+  </body>
+</html>
