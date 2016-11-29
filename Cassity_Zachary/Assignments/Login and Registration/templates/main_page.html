@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <form action="/login" method = 'post'>
+      Email: <input type="text" name="email_login" placeholder="Enter your email here!"/>
+      Password: <input type="password" name="password_login" placeholder="Enter your password here!"/>
+      <input type="submit" name="name" value="Login!">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </form>
+    <h3> <a href="/register">Register!</a> </h3>
+  </body>
+</html>
