@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div>
+      <div>
+        <h3>Are you sure you want to delete the following course?</h3>
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td>{{single_class[0]['name']}}</td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>{{single_class[0]['description']}}</td>
+          </tr>
+        </table>
+        <form action="/">
+          <input type="submit" value="No">
+        </form>
+        <form action="/deleted/{{id}}" method="post">
+          <input type="submit" value="Yes! I want to delete this">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
