@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Registration</h1>
+      <div id="bottom-wrap">
+        <div class="entry">
+          <h5>To register fill out the details below:</h5>
+          <form class="registration" action="/registration/submit" method="post">
+            <p>Username: <input type="text" name="un"></p>
+            <p>First Name: <input type="text" name="fn"></p>
+            <p>Last Name: <input type="text" name="ln"></p>
+        </div>
+        <div class="entry">
+            <h5>Registration Continued:</h5>
+            <p>Email: <input type="text" name="email"></p>
+            <p>Password: <input type="text" name="pw"></p>
+            <p>Confirm Pw: <input type="password" name="conf"></p>
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+  </body>
+</html>

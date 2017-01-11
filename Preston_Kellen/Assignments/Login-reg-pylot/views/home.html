@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Welcome {{session['user']['un']}}</h1>
+      <div>
+        <div id="pre-wall">
+          <div id="dashboard">
+            <form action="/logout" method="post">
+              <button type="submit">Logout</button>
+            </form>
+          </div>
+        <div>
+      </div>
+    </div>
+  </body>
+</html>
