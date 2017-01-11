@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Landing Page for Registrations</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='index.css') }}">
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>The Wall</h1>
+      <div>
+        <div id="wall-prewall">
+          <div id="wall-dashboard">
+            <div id="wall">
+              <div id="post-box">
+                <form action="/post" method="post">
+                  <p>Write your comment here:</p>
+                  <textarea class="wall-input" type="text" name="comment"></textarea>
+                  <input type="submit" value="Post">
+                </form>
+              </div>
+              <div id="posts">
+                {% for comments in post %}
+                  <span>{{comments['un']}} - {{comments['created_at']}}</span>
+                  <p class="comment">{{comments['comment']}}</p>
+                {% for response in reply %}
+                {% if response['post_id'] == comments['id'] %}
+                  <span>{{response['un']}} - {{response['created_at']}}</span>
+                  <p class="replies">{{response['reply']}}</p>
+                {% endif %}
+                {% endfor %}
+                <p>Post a reply:</p>
+                <span>
+                  <form class="reply-com" action="/reply" method="post">
+                    <textarea class="reply-input" type="text" name="reply"></textarea>
+                    <input type="submit" value="Reply">
+                    <input type="hidden" name="post-id" value="{{comments['id']}}">
+                  </form>
+                  {% if comments['uid'] == session['user']['id'] %}
+                  <form class="delete" action="/delete" method="post">
+                    <input type="submit" value="Delete Post">
+                    <input type="hidden" name="deleteme" value="{{comments['id']}}">
+                  {% endif %}
+                  </form>
+                </span>
+                {% endfor %}
+              </div>
+            </div>
+            <form action="/logout" method="post">
+              <button type="submit">Logout</button>
+            </form>
+          </div>
+        <div>
+      </div>
+    </div>
+  </body>
+</html>
