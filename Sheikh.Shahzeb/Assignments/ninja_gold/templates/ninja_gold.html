@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninja Gold</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='ninja_gold.css')}}">
+</head>
+<body>
+	<div id="head">
+	<h1>Welcome to Ninja Gold!</h1>
+	</div>
+	<div id='wrapper'>
+	<div class="building">
+		<h4>Farm</h4>
+		<p>(earn 10-20 golds)</p>
+		<form action="/process" method="POST">
+			<input type="hidden" name="building" value="farm"/>
+			<input type="submit" value="Find Gold!"/>
+		</form>
+
+	</div>
+	<div class="building">
+		<h4>cave</h4>
+		<p>(earn 5-10 golds)</p>
+		<form action="/process" method="POST">
+			<input type="hidden" name="building" value="cave"/>
+			<input type="submit" value="Find Gold!"/>
+		</form>
+
+	</div>
+	<div class="building">
+		<h4>House</h4>
+		<p>(earn 2-5 golds)</p>
+		<form action="/process" method="POST">
+			<input type="hidden" name="building" value="house"/>
+			<input type="submit" value="submit">
+			
+		</form>
+	</div>
+	<div class="building">
+		<h4>casino</h4>
+		<p>(earn 0-50 golds)</p>
+		<form action="/process" method="POST">
+		<input type="hidden" name="building" value="casino"/>
+		<input type="submit" value="Find Gold!"/>
+		</form>
+	</div>
+	</div>
+	<h3>Activities</h3>
+	<div>
+		{% for activity in session['activities'] %}
+		<p>{{activity}}</p>
+		{% endfor %}
+	</div>
+
+</body>
+</html>

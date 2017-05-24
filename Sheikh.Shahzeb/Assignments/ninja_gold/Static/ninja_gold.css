@@ -1,0 +1,13 @@
+* {
+	display:inline-block;
+	text-align: center;
+}
+h1 {
+	color:red;
+}
+#head {
+	display:block;
+}
+.building {
+	background:green;
+}
